@@ -1,33 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import logo from '/Logo.svg'
+import Navigation from './Navigation.tsx'
+import Hero from './Hero.tsx'
+import Specials from './Specials.tsx'
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    
+      <header className='flex flex-row items-center justify-between max-w-3xl mx-auto p-3'>
+        <img src={logo} className="App-logo" alt="logo" />
+        <nav>
+          <Navigation/>
+        </nav>
+      </header>
+      <main>
+        <Hero/>
+        <div className='md:mt-[200px] max-w-3xl mx-auto my-3 p-3'>
+          <div className="flex flex-row align-center justify-between">
+            <h1>This weeks specials!</h1>
+            <button>Online Menu</button>
+          </div>
+          <Specials/>
+        </div>
+      </main>
+      <footer>
+
+      </footer>
+
     </>
   )
 }
