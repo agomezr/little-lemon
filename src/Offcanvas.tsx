@@ -1,6 +1,7 @@
 import { useState } from "react";
 import logo from '/Logo.svg';
 import hamburguer from '/icon_hamburger.svg';
+import { Link } from "react-router-dom";
 
 export default function Offcanvas() {
 
@@ -22,10 +23,10 @@ export default function Offcanvas() {
             </div>
             <img src={logo} className="w-[80%] mx-auto mb-3" alt="logo" />
             <nav>
-                <a href="#" className="block py-2 px-3 hover:bg-custom rounded" title="Home">Home</a>
+                <Link to="/" className="block py-2 px-3 hover:bg-custom rounded" title="Home">Home</Link>
                 <a href="#" className="block py-2 px-3 hover:bg-custom rounded" title="About">About</a>
                 <a href="#" className="block py-2 px-3 hover:bg-custom rounded" title="Menu">Menu</a>
-                <a href="#" className="block py-2 px-3 hover:bg-custom rounded" title="Reservations">Reservations</a>
+                <Link to="/reservations" className="block py-2 px-3 hover:bg-custom rounded" title="Reservations">Reservations</Link>
                 <a href="#" className="block py-2 px-3 hover:bg-custom rounded" title="Order online">Order online</a>
                 <a href="#" className="block py-2 px-3 hover:bg-custom rounded" title="Login">Login</a>
             </nav>

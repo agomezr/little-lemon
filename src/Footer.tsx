@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logo from '/logo-vertical.png';
 
 
@@ -13,7 +14,7 @@ function Footer() {
               <nav>
                 <ul className='ml-2'>
                   <li>
-                    <a href="#" title="Home">Home</a>
+                    <Link to="/" title="Home">Home</Link>
                   </li>
                   <li>
                     <a href="#about-us" title="About">About</a>
@@ -22,7 +23,7 @@ function Footer() {
                     <a href="#" title="Menu">Menu</a>
                   </li>
                   <li>
-                    <a href="#" title="Reservations">Reservations</a>
+                    <Link to="/reservations" title="Reservations">Reservations</Link>
                   </li>
                   <li>
                     <a href="#" title="Order Online">Order Online</a>

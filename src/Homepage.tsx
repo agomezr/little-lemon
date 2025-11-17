@@ -1,24 +1,19 @@
 import './home.css'
-import logo from '/Logo.svg'
-import Navigation from './Navigation.tsx'
+
 import Hero from './Hero.tsx'
 import Specials from './Specials.tsx'
 import Testimonials from './Testimonials.tsx'
-import About from './About.tsx'
+import Chicago from './Chicago.tsx'
 import Footer from './Footer.tsx'
+import Header from './Header.tsx'
 
 
-export default function Homepage() {
+export default function HomePage() {
 
   return (
     <>
-      <header className='flex flex-row items-center justify-between max-w-3xl mx-auto p-3'>
-        <a href="/" title="Homepage">
-          <img src={logo}  alt="logo" />
-        </a>
-        <nav>
-          <Navigation/>
-        </nav>
+      <header>
+        <Header/>
       </header>
       <main>
 
@@ -36,8 +31,7 @@ export default function Homepage() {
           <Testimonials/>
         </div>
 
-        <About/>
-        
+        <Chicago/>
 
       </main>
       <footer>
