@@ -14,8 +14,10 @@
 }
 
 html {
+  min-width: 350px;
   font-family: var(--font-body);
-  overflow-x: hidden;;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 /* Fonts */
@@ -50,7 +52,6 @@ h2, .h2 {
 
 p {
   line-height: 1.5rem;
-  margin-bottom: 20px;
 }
 
 button, .button {
@@ -88,7 +89,6 @@ button, .button {
   overflow-x:auto;
 }
 
-
 #specials > .card {
   width: 250px; height: 100%; flex: none;
   background-color: var(--color-custom);
@@ -103,7 +103,12 @@ button, .button {
   }
   .card-title {
     font-size: 1.25rem;
+    margin-bottom: 16px; 
   }
+  .card-description{
+    margin-bottom: 16px; 
+  }
+
   .link-delivery {
     display: flex; flex-direction: row;
     align-items: center; justify-content: flex-start;
@@ -111,7 +116,35 @@ button, .button {
     gap: .5rem;
   }
 }
-
+/*Stars sprite */
+.stars {
+  width: 140px;
+  height:22px;
+  background-image: url('/stars.jpg');
+  background-size: cover;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+.stars-1 {
+  background-position-x: 0;
+  background-position-y: 0;
+}
+.stars-2 {
+  background-position-x: 0;
+  background-position-y:-22px;
+}
+.stars-3 {
+  background-position-x: 0;
+  background-position-y:-44px;
+}
+.stars-4 {
+  background-position-x: 0;
+  background-position-y:-66px;
+}
+.stars-5 {
+  background-position-x: 0;
+  background-position-y:-88px;
+}
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
