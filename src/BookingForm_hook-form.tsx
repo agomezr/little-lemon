@@ -1,6 +1,6 @@
 import { useState, type ChangeEvent } from 'react';
 import './form.css'
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 
 type availableTimes =  "17:00" | "18:00" | "19:00" | "20:00" | "21:00" | "22:00";
@@ -30,8 +30,12 @@ function ReservationForm() {
   const { register, handleSubmit, formState: { errors }, reset, watch} = useForm<IFormInput>();
 
   const termsAccepted = watch("terms");
-
-  const onSubmit: SubmitHandler<IFormInput> = data => {console.log(data); reset()}
+ 
+  function onSubmit(data:IFormInput){
+    console.log(data); 
+    reset();
+  }
+  // const onSubmit: SubmitHandler<IFormInput> = data => {console.log(data); reset()}
   
   return (
     <div className="container mx-auto">

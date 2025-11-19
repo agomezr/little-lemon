@@ -1,18 +1,22 @@
-import { useRef, useState, type ChangeEvent, type FormEvent } from 'react';
+import { useRef, type ChangeEvent, type Dispatch, type FormEvent } from 'react';
 import './form.css'
 
 import { type availableTimes, type dateAction } from './BookingPage';
 
 type ReservationFormProps = {
   timesOptions?: availableTimes[];
-  seekTimesAvailable: (action:dateAction)=> availableTimes[]
+  seekTimesAvailable: Dispatch<dateAction>;
+  selectedTime: availableTimes | "";
+  setSelectedTime: (value:availableTimes | "") => void;
+
 }
 
-function ReservationForm({ timesOptions=[], seekTimesAvailable }:ReservationFormProps) {
+function ReservationForm(
+  { timesOptions=[], seekTimesAvailable, selectedTime, setSelectedTime}
+  :ReservationFormProps
+) {
 
   const dateInput = useRef<HTMLInputElement>(null);
-
-  const [selectedTime, setSelectedTime] = useState<availableTimes | ''>('');
 
   function handleSubmit(e:FormEvent<HTMLFormElement>){
     e.preventDefault();
@@ -22,31 +26,33 @@ function ReservationForm({ timesOptions=[], seekTimesAvailable }:ReservationForm
     const data = Object.fromEntries(formData.entries());
     console.log(data);
   }
+
+  function handleDateChange(){
+     if (dateInput.current) {
+        seekTimesAvailable({ type: 'seek', payload: dateInput.current.value });
+        setSelectedTime(""); 
+     }
+  }
   
   return (
     <div className="container mx-auto">
     <form onSubmit={handleSubmit}>
 
-
-  <div className='flex flex-row justify-between gap-2'>
-    <div className='w-1/2'>
-      <div className='mb-4'>
-        <label htmlFor="date">Choose date</label>
-        <input type="date" id="date" name="date" ref={dateInput} required
-          onChange={() => {
-            if (dateInput.current !== null) {
-              seekTimesAvailable({ type: 'seek', payload: dateInput.current.value } )
-            }
-          }}
-        />
+      <div className='flex flex-row justify-between gap-2'>
+        <div className='w-1/2'>
+          <div className='mb-4'>
+            <label htmlFor="date">Choose date</label>
+            <input type="date" id="date" name="date" ref={dateInput} required
+              onChange={handleDateChange}
+            />
+          </div>
+        </div>
+        <div className='w-1/2'>
+          <div className='mb-4'>
+            <TimeSelect options={timesOptions} selectedTime={selectedTime} setSelectedTime={setSelectedTime}/>
+          </div>
+        </div>
       </div>
-    </div>
-    <div className='w-1/2'>
-      <div className='mb-4'>
-        <TimeSelect options={timesOptions} selectedTime={selectedTime} setSelectedTime={setSelectedTime}/>
-      </div>
-    </div>
-  </div>
 
 
       <input type="submit" className='button max-w-[150px] mx-auto' />
@@ -59,7 +65,7 @@ function ReservationForm({ timesOptions=[], seekTimesAvailable }:ReservationForm
 type TimeSelectProps = {
   options: availableTimes[] | [];
   selectedTime: availableTimes | '';
-  setSelectedTime: (value:availableTimes) => void;
+  setSelectedTime: (value:availableTimes | "") => void;
 }
 
 function TimeSelect({options=[], selectedTime, setSelectedTime}:TimeSelectProps) {
@@ -70,7 +76,7 @@ function TimeSelect({options=[], selectedTime, setSelectedTime}:TimeSelectProps)
 
   return (
     <div>
-      <label htmlFor="time-select">Available Times</label>
+      <label htmlFor="time-select">Available Times <sup>({options.length})</sup></label>
       <select id="time-select" value={selectedTime} name="time-select" onChange={handleChange} >
         <option value="" disabled> </option>
         {options && options.map((hour:availableTimes) => (
