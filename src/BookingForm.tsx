@@ -54,7 +54,7 @@ function ReservationForm(
         </div>
       </div>
 
-      <input type="submit" value="Confirm reserve!" className='button !w-auto mx-auto' />
+      <input type="submit" value="Confirm reserve!" className='button w-auto! mx-auto' />
 
     </form>
     </div>
