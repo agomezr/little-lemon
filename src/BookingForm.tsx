@@ -54,8 +54,7 @@ function ReservationForm(
         </div>
       </div>
 
-
-      <input type="submit" className='button max-w-[150px] mx-auto' />
+      <input type="submit" value="Confirm reserve!" className='button !w-auto mx-auto' />
 
     </form>
     </div>
@@ -85,7 +84,7 @@ function TimeSelect({options=[], selectedTime, setSelectedTime}:TimeSelectProps)
           </option>
         ))}
       </select>
-      <p>Selected Occasion: **{selectedTime || 'None'}**</p>
+      <p>Selected Occasion: **{selectedTime || 'No selected time'}**</p>
     </div>
   );
 }
