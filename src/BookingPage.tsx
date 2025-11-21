@@ -42,18 +42,15 @@ export function initializeTimes(){
 }
 
 
-
-
-
 function BookingPage() {
 
   const [dateAvailableOptions, dispatchDate] = useReducer(updateTimes, initializeTimes());
-  const [selectedTime, setSelectedTime] = useState<availableTimes | ''>('');
+  const [_state, setSelectedTime] = useState<availableTimes | ''>('');
 
   const navigate = useNavigate();
 
   function sendForm(fromData:FormData) {
-    const data = Object.fromEntries(fromData.entries());
+    const data = Object.fromEntries(fromData);
     console.log(data);
     navigate("/confirmed-booking");
   }
@@ -75,7 +72,7 @@ function BookingPage() {
             <p className="text-sm text-center mb-4">*All fields are required</p>
             <BookingForm 
               timesOptions={dateAvailableOptions} seekTimesAvailable={dispatchDate}
-              selectedTime={selectedTime} setSelectedTime={setSelectedTime}
+              setSelectedTime={setSelectedTime}
               sendForm={sendForm}
             />
           </div>

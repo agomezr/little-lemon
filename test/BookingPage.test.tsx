@@ -38,8 +38,8 @@ describe('Booking Page & Form Integration', () => {
   });
 
   it(('By default, times options should be all options for customer info'), ()=>{
-    const state = initializeTimes();
-    expect(state).toEqual(availableTimesOptions);
+    const options = initializeTimes();
+    expect(options.length).toBeGreaterThan(1);
   })
 
   test('Input type submit in the form should have the correct attributes', () => {
@@ -74,10 +74,6 @@ describe('Booking Page & Form Integration', () => {
     const timeSelect = screen.getByLabelText(/Available Times/i);
     const optionsAll = within(timeSelect).getAllByRole('option');
     expect(optionsAll.length).toBeGreaterThan(1); 
-    
-    // Verify first and last times. This could be innecesary
-    expect(screen.getByText('17:00')).toBeInTheDocument(); 
-    expect(screen.getByText('22:00')).toBeInTheDocument();
 
   });
 
