@@ -8,11 +8,11 @@ type ReservationFormProps = {
   seekTimesAvailable: Dispatch<dateAction>;
   selectedTime: availableTimes | "";
   setSelectedTime: (value:availableTimes | "") => void;
-
+  sendForm: (data:FormData) => void;
 }
 
 function ReservationForm(
-  { timesOptions=[], seekTimesAvailable, selectedTime, setSelectedTime}
+  { timesOptions=[], seekTimesAvailable, selectedTime, setSelectedTime, sendForm}
   :ReservationFormProps
 ) {
 
@@ -21,10 +21,9 @@ function ReservationForm(
   function handleSubmit(e:FormEvent<HTMLFormElement>){
     e.preventDefault();
     const form = e.currentTarget;
-
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-    console.log(data);
+    sendForm(formData);
+    
   }
 
   function handleDateChange(){

@@ -27,7 +27,13 @@ function ReservationForm() {
   const [selectedOccasion, setSelectedOccasion] = useState<Occasion | ''>('');
   const [selectedTime, setSelectedTime] = useState<availableTimes | ''>('');
   
-  const { register, handleSubmit, formState: { errors }, reset, watch} = useForm<IFormInput>();
+  const { register, handleSubmit, formState: { errors }, reset, watch} = useForm<IFormInput>({
+    mode: 'onChange',
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+    }}
+  );
 
   const termsAccepted = watch("terms");
  
@@ -35,7 +41,6 @@ function ReservationForm() {
     console.log(data); 
     reset();
   }
-  // const onSubmit: SubmitHandler<IFormInput> = data => {console.log(data); reset()}
   
   return (
     <div className="container mx-auto">
@@ -138,7 +143,7 @@ function ReservationForm() {
       </div>
 
 
-      <input disabled={!termsAccepted} type="submit" className='button max-w-[150px] mx-auto' />
+      <input disabled={!(termsAccepted) || errors.length > 0} type="submit" className='button max-w-[150px] mx-auto' />
 
     </form>
     </div>

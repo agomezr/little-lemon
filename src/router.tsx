@@ -1,8 +1,9 @@
 import { type RouteObject } from 'react-router-dom'
 
 import BookingPage from './BookingPage.tsx'
-import HomePage from './Homepage.tsx'
+import HomePage from './HomePage.tsx'
 import ErrorPage from './ErrorPage.tsx'
+import ConfirmedBookingPage from './ConfirmedBookingPage.tsx'
 
 export const routes: RouteObject[] = [
   {
@@ -12,9 +13,12 @@ export const routes: RouteObject[] = [
     
   }, 
   {
-    path: "reservations/",
+    path: "/reservations",
     element: ( <BookingPage/> ), 
-    errorElement: <ErrorPage />
+  }, 
+  {
+    path: "/confirmed-booking",
+    element: ( <ConfirmedBookingPage/> ), 
   }, 
   {  
     path: "*",

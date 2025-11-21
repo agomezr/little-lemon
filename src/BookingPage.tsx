@@ -4,6 +4,7 @@ import BookingForm from "./BookingForm"
 import { useEffect, useReducer, useState } from "react"
 import { getTodayDateString } from "./helper";
 import { fetchAPI } from "./helper";
+import { useNavigate } from 'react-router-dom';
 
 
 export type availableTimes =  "17:00" | "18:00" | "19:00" | "20:00" | "21:00" | "22:00";
@@ -30,12 +31,6 @@ export function updateTimes(_state:availableTimes[], action:dateAction) {
       if (today > action.payload){
         return []
       }
-
-      /* Fake response for today. Delete some first options */
-      if(today === action.payload)
-      {
-        return availableTimesOptions.filter(time => time >= "20:00");
-      }
       
       return fetchAPI(new Date(action.payload)) as availableTimes[];
     }
@@ -46,10 +41,22 @@ export function initializeTimes(){
   return fetchAPI(new Date()) as availableTimes[];
 }
 
+
+
+
+
 function BookingPage() {
 
   const [dateAvailableOptions, dispatchDate] = useReducer(updateTimes, initializeTimes());
   const [selectedTime, setSelectedTime] = useState<availableTimes | ''>('');
+
+  const navigate = useNavigate();
+
+  function sendForm(fromData:FormData) {
+    const data = Object.fromEntries(fromData.entries());
+    console.log(data);
+    navigate("/confirmed-booking");
+  }
 
   useEffect(()=>{
     document.title = "Little Lemon - Booking a table";
@@ -69,6 +76,7 @@ function BookingPage() {
             <BookingForm 
               timesOptions={dateAvailableOptions} seekTimesAvailable={dispatchDate}
               selectedTime={selectedTime} setSelectedTime={setSelectedTime}
+              sendForm={sendForm}
             />
           </div>
         </div>
