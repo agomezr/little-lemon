@@ -77,14 +77,14 @@ function TimeSelect({options=[], selectedTime, setSelectedTime}:TimeSelectProps)
     <div>
       <label htmlFor="time-select">Available Times <sup>({options.length})</sup></label>
       <select id="time-select" value={selectedTime} name="time-select" onChange={handleChange} >
-        <option value="" disabled> </option>
+        <option value=""> Select time </option>
         {options && options.map((hour:availableTimes) => (
           <option key={hour} value={hour}>
             {hour}
           </option>
         ))}
       </select>
-      <p>Selected Occasion: **{selectedTime || 'No selected time'}**</p>
+      {/* <p>Selected Occasion: **{selectedTime || 'No selected time'}**</p> */}
     </div>
   );
 }
