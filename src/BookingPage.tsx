@@ -5,7 +5,7 @@ import { useEffect, useReducer, useState } from "react"
 import { getTodayDateString } from "./helper";
 import { fetchAPI } from "./helper";
 import { useNavigate } from 'react-router-dom';
-import { setStorage } from "./localStorage";
+import { addBooking } from "./localStorage";
 
 /* Requirements available Times */
 export type availableTimes = "17:00" | "17:30" | "18:00" | "18:30" | "19:00" | "19:30" | 
@@ -53,7 +53,7 @@ function BookingPage() {
   const navigate = useNavigate();
 
   function sendForm(fromData:IFormInput) {
-    setStorage([fromData]);
+    addBooking(fromData);
     console.log(fromData);
     navigate("/confirmed-booking");
   }

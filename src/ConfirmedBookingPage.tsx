@@ -1,6 +1,7 @@
-import { use, useEffect } from "react"
+import { useEffect } from "react"
 import Footer from "./Footer"
 import Header from "./Header"
+import ShowReservations from "./ShowReservations";
 
 function ConfirmedBooking() {
 
@@ -20,6 +21,9 @@ function ConfirmedBooking() {
             <div className="flex flex-col items-center justify-center h-100">
               <h1 className="text-lg mb-4">Booking has been confirmed</h1>
               <p className="text-primary font-semibold text-lg">Thank you for booking with us!</p>
+              
+              <ShowReservations/>
+
             </div>
           </div>
         </div>
