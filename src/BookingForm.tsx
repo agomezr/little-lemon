@@ -1,33 +1,28 @@
 import { type ChangeEvent, type Dispatch } from 'react';
 import './form.css'
 import { Controller, useForm } from "react-hook-form";
-import type { dateAction } from './BookingPage';
+import type { availableTimes, dateAction, Occasion } from './BookingPage';
 import { getTodayDateString } from './helper';
 import TimeSelect from './TimeSelect';
 
 
-type availableTimes =  "17:00" | "18:00" | "19:00" | "20:00" | "21:00" | "22:00";
-type Occasion = "Birthday" | "Anniversary";
-
-// const occasions:Occasion[] = ["Birthday", "Anniversary"];
-
-interface IFormInput extends FormData{
+export interface IFormInput {
   'firstName': string;
   'lastName': string;
   'email': string;
   'phoneNumber': string; 
   'date': string; 
-  'hour': availableTimes |'';
+  'hour': availableTimes | '';
   'people': number;
   'occasion': Occasion;
   'terms': boolean;
 }
 
 type ReservationFormProps = {
-  timesOptions?: availableTimes[];
+  timesOptions?: availableTimes[] | [];
   seekTimesAvailable: Dispatch<dateAction>;
   setSelectedTime: (value:availableTimes | "") => void;
-  sendForm: (data:FormData) => void;
+  sendForm: (data:IFormInput) => void;
 }
 
 function ReservationForm(
@@ -68,7 +63,7 @@ function ReservationForm(
 
           <div className='flex flex-col md:flex-row justify-between gap-2'>
             <div className='md:w-1/2'>
-              <div className='mb-4'>
+              <fieldset className='mb-4'>
                 <label htmlFor="firstName">First Name</label>
                 <input type="text" placeholder="First name" id="firstName"
                   {...register("firstName", { required: true, maxLength: 100 })} 
@@ -80,52 +75,51 @@ function ReservationForm(
                 {errors.firstName?.type === "maxLength" && (
                   <p role="alert" className='text-red-600'>First name must be up to 100 characters</p>
                 )}
-              </div>
+              </fieldset>
             </div>
             <div className='md:w-1/2'>
-              <div className='mb-4'>
+              <fieldset className='mb-4'>
                 <label htmlFor="lastName">Last Name</label>
                 <input  type="text"  placeholder="Last name" id="lastName"
                   {...register("lastName", { required: true, maxLength: 100 })} 
+                  aria-invalid={errors.lastName ? "true" : "false"}
                 />
                 {errors['lastName'] && <p role="alert" className='text-red-600'>Last name is required and less than 100 characters.</p>}
-              </div>
+              </fieldset>
             </div>
           </div>
 
-          <div className='mb-4'>
+          <fieldset className='mb-4'>
             <label htmlFor="email">Email</label>
             <input  type="text" placeholder="Email" id="email"
               {...register("email", { required: true, pattern: /^\S+@\S+$/i })} 
             />
             {errors.email && <p role="alert" className='text-red-600'>Email is required and must be a valid email address.</p>}
-          </div>
+          </fieldset>
 
-          <div className='mb-4'>
+          <fieldset className='mb-4'>
             <label htmlFor="phoneNumber">Phone number</label>
             <input type="tel"  placeholder="Mobile number"  id="phoneNumber"
               {...register("phoneNumber", { required: true, minLength: 6, maxLength: 12 })} 
             />
             {errors['phoneNumber'] && <p role="alert" className='text-red-600'>Phone number is required and must be between 6 and 12 characters.</p>}
-          </div>
+          </fieldset>
 
         </div>
         <div className='md:w-1/2'>
 
         <div className='flex flex-row justify-between gap-2'>
           <div className='w-1/2'>
-            <div className='mb-4'>
+            <fieldset className='mb-4'>
               <label htmlFor="date">Choose date</label>
               <input type="date" placeholder="Date" id="date"
                 {...register("date", { required: true})} onChange={handleDateChange} 
               />
               {errors['date'] && <p role="alert" className="text-red-600">Date is required.</p>}
-            </div>
+            </fieldset>
           </div>
           <div className='w-1/2'>
-            <div className='mb-4'>
-              {/* <TimeSelect options={timesOptions} selectedTime={selectedTime} setSelectedTime={setSelectedTime}/> */}
-                
+            <fieldset className='mb-4'>
                 <Controller name="hour" control={control} rules={{ required: true }}
                   render={({ field: { onChange, value, ref } }) => (
                     <TimeSelect
@@ -140,18 +134,18 @@ function ReservationForm(
                   )}
                 />
                 {errors.hour && <p role="alert" className="text-red-600">Time is required.</p>}
-            </div>
+            </fieldset>
           </div>
         </div>
 
         <div className='w-1/2'>
-          <div className='mb-4'>
+          <fieldset className='mb-4'>
             <label htmlFor="people">Number of guests</label>
             <input type="number" placeholder="People" id="people"
               {...register("people", { required: true, min:1, max:10})} 
             />
             {errors['people'] && <p role="alert" className="text-red-600">People is required and between 1 and 10.</p>}
-          </div>
+          </fieldset>
         </div>
 
         {/* <div className='mb-4'>
@@ -162,16 +156,18 @@ function ReservationForm(
       </div>
 
 
-      <div className='flex flex-row items-center flex-nowrap mb-4'>
+      <div className='flex flex-row items-center flex-nowrap my-4'>
         <input type="checkbox" id="terms"
           {...register("terms", { required: true})} 
         /> 
         <label htmlFor="terms" >By checking this box, you agree to our [Terms and Conditions].</label>
       </div>
 
-
+      
+      <div className='text-center'>
       <input disabled={!termsAccepted || !isValid } type="submit" 
-      value="Confirm reserve!" className='button max-w-[150px] mx-auto' />
+      value="Confirm reserve!" className='button w-auto inline!' />
+      </div>
 
     </form>
     </div>
@@ -207,13 +203,6 @@ function OccasionSelect({selectedOccasion, setSelectedOccasion}:OccasionSelectPr
 }
 */
 
-/*
-interface TimeSelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  options: availableTimes[] | [];
-  selectedTime: availableTimes | '';
-  setSelectedTime: (value:availableTimes | "") => void;
-}
-*/
 
 
 export default ReservationForm

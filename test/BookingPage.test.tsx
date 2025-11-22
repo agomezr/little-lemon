@@ -1,5 +1,5 @@
-import { describe, test, expect, vi, it } from 'vitest';
-import { render, screen, fireEvent, within } from '@testing-library/react';
+import { describe, test, expect, vi, it, afterEach } from 'vitest';
+import { render, screen, fireEvent, within, cleanup } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import BookingPage, {initializeTimes, updateTimes, availableTimesOptions } from '../src/BookingPage';
 
@@ -23,12 +23,21 @@ const getTomorrowDateString = () => {
 
 describe('Booking Page & Form Integration', () => {
 
-  test('Render main component BookingPage with the text "*All fields are required"', () => {
-    render(
+  const renderBookingPage = () => {
+    return render(
       <MemoryRouter>
         <BookingPage />
       </MemoryRouter>
     );
+  };
+
+  afterEach(() => {
+    cleanup();
+  });
+
+
+  test('Render main component BookingPage with the text "*All fields are required"', () => {
+    renderBookingPage();
 
     const textElement = screen.getByText(/\*All fields are required/i);
     expect(textElement).toBeInTheDocument();
@@ -43,11 +52,7 @@ describe('Booking Page & Form Integration', () => {
   })
 
   test('Input type submit in the form should have the correct attributes', () => {
-    render(
-      <MemoryRouter>
-        <BookingPage />
-      </MemoryRouter>
-    );
+    renderBookingPage();
 
     /* Select by role and text */
     const submitButton = screen.getByRole('button', { name: /Confirm reserve!/i });
@@ -57,11 +62,7 @@ describe('Booking Page & Form Integration', () => {
   });
 
   test('Simulate change date, available times are 1 placeholder + some other times.', () => {
-    render(
-      <MemoryRouter>
-        <BookingPage />
-      </MemoryRouter>
-    );
+    renderBookingPage();
 
     // 'Choose date' label must match to input (htmlFor -> input#id)
     const dateInput = screen.getByLabelText(/Choose date/i);

@@ -1,13 +1,17 @@
 import Footer from "./Footer"
 import Header from "./Header"
-import BookingForm from "./BookingForm"
+import BookingForm, { type IFormInput } from "./BookingForm"
 import { useEffect, useReducer, useState } from "react"
 import { getTodayDateString } from "./helper";
 import { fetchAPI } from "./helper";
 import { useNavigate } from 'react-router-dom';
+import { setStorage } from "./localStorage";
 
-
-export type availableTimes =  "17:00" | "18:00" | "19:00" | "20:00" | "21:00" | "22:00";
+/* Requirements available Times */
+export type availableTimes = "17:00" | "17:30" | "18:00" | "18:30" | "19:00" | "19:30" | 
+                      "20:00" | "20:30" | "21:00" | "21:30" | "22:00" | "22:30" | 
+                      "23:00" | "23:30";
+export type Occasion = "Birthday" | "Anniversary";
 export type dateAction = { 
   type: string;
   payload: string;
@@ -41,7 +45,6 @@ export function initializeTimes(){
   return fetchAPI(new Date()) as availableTimes[];
 }
 
-
 function BookingPage() {
 
   const [dateAvailableOptions, dispatchDate] = useReducer(updateTimes, initializeTimes());
@@ -49,9 +52,9 @@ function BookingPage() {
 
   const navigate = useNavigate();
 
-  function sendForm(fromData:FormData) {
-    const data = Object.fromEntries(fromData);
-    console.log(data);
+  function sendForm(fromData:IFormInput) {
+    setStorage([fromData]);
+    console.log(fromData);
     navigate("/confirmed-booking");
   }
 
