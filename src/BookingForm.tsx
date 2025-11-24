@@ -93,6 +93,7 @@ function ReservationForm(
             <label htmlFor="email">Email</label>
             <input  type="text" placeholder="Email" id="email"
               {...register("email", { required: true, pattern: /^\S+@\S+$/i })} 
+              aria-invalid={errors.email ? "true" : "false"}
             />
             {errors.email && <p role="alert" className='text-red-600'>Email is required and must be a valid email address.</p>}
           </fieldset>
@@ -101,6 +102,7 @@ function ReservationForm(
             <label htmlFor="phoneNumber">Phone number</label>
             <input type="tel"  placeholder="Mobile number"  id="phoneNumber"
               {...register("phoneNumber", { required: true, minLength: 6, maxLength: 12 })} 
+              aria-invalid={errors.phoneNumber ? "true" : "false"}
             />
             {errors['phoneNumber'] && <p role="alert" className='text-red-600'>Phone number is required and must be between 6 and 12 characters.</p>}
           </fieldset>
@@ -113,7 +115,8 @@ function ReservationForm(
             <fieldset className='mb-4'>
               <label htmlFor="date">Choose date</label>
               <input type="date" placeholder="Date" id="date"
-                {...register("date", { required: true})} onChange={handleDateChange} 
+                {...register("date", { required: true })} onChange={handleDateChange} 
+                aria-invalid={errors.date ? "true" : "false"}
               />
               {errors['date'] && <p role="alert" className="text-red-600">Date is required.</p>}
             </fieldset>
@@ -143,6 +146,7 @@ function ReservationForm(
             <label htmlFor="people">Number of guests</label>
             <input type="number" placeholder="People" id="people"
               {...register("people", { required: true, min:1, max:10})} 
+              aria-invalid={errors.people ? "true" : "false"}
             />
             {errors['people'] && <p role="alert" className="text-red-600">People is required and between 1 and 10.</p>}
           </fieldset>
@@ -158,7 +162,8 @@ function ReservationForm(
 
       <div className='flex flex-row items-center flex-nowrap my-4'>
         <input type="checkbox" id="terms"
-          {...register("terms", { required: true})} 
+          {...register("terms", { required: true })} 
+          aria-invalid={errors.terms ? "true" : "false"}
         /> 
         <label htmlFor="terms" >By checking this box, you agree to our [Terms and Conditions].</label>
       </div>

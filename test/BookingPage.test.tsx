@@ -1,7 +1,7 @@
 import { describe, test, expect, vi, it, afterEach } from 'vitest';
-import { render, screen, fireEvent, within, cleanup } from '@testing-library/react';
+import { render, screen, fireEvent, within, cleanup, act, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import BookingPage, {initializeTimes, updateTimes, availableTimesOptions } from '../src/BookingPage';
+import BookingPage, {initializeTimes } from '../src/BookingPage';
 
 // 1. External components to avoid unexpected external collateral failures
 vi.mock('../src/Header', () => ({
@@ -61,21 +61,19 @@ describe('Booking Page & Form Integration', () => {
     expect(submitButton).toHaveAttribute('type', 'submit');
   });
 
-  test('Simulate change date, available times are 1 placeholder + some other times.', () => {
+  test('Simulate change date, available times are 1 placeholder + some other times.', async () => {
     renderBookingPage();
 
-    // 'Choose date' label must match to input (htmlFor -> input#id)
     const dateInput = screen.getByLabelText(/Choose date/i);
-    
     const tomorrow = getTomorrowDateString();
-    
+
     fireEvent.change(dateInput, { target: { value: tomorrow } });
 
-    // Verify all available options (1 empty placeholder + more options)
-    const timeSelect = screen.getByLabelText(/Available Times/i);
-    const optionsAll = within(timeSelect).getAllByRole('option');
-    expect(optionsAll.length).toBeGreaterThan(1); 
-
+    await waitFor(() => {
+      const timeSelect = screen.getByLabelText(/Available Times/i);
+      const optionsAll = within(timeSelect).getAllByRole('option');
+      expect(optionsAll.length).toBeGreaterThan(1);
+    });
   });
 
 });

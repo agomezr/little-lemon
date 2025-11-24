@@ -14,12 +14,7 @@ export function TimeSelect({options = [], selectedTime, onChange, ref}:TimeSelec
   return (
     <div>
       <label htmlFor="time-select">Available Times <sup>({options.length})</sup></label>
-      <select 
-        id="time-select" 
-        ref={ref}
-        value={selectedTime} 
-        onChange={onChange}
-      >
+      <select  id="time-select" value={selectedTime} ref={ref} onChange={onChange} >
         <option value=""> Select time </option>
         {options.map((hour) => (
           <option key={hour} value={hour}>
