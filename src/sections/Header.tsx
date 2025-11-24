@@ -1,4 +1,4 @@
-import Navigation from './Navigation'
+import Navigation from './Navigation.tsx'
 import logo from '/Logo.svg'
 
 function Header() {

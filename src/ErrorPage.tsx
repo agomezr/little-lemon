@@ -1,5 +1,5 @@
-import Header from './Header.tsx'
-import Footer from './Footer.tsx'
+import Header from './sections/Header.tsx'
+import Footer from './sections/Footer.tsx'
 
 export default function ErrorPage() {
 

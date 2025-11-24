@@ -1,6 +1,6 @@
-import greekSaladImg from "./assets/greek salad.jpg";
-import bruchettaImg from "./assets/bruchetta.svg";
-import lemonDessertImg from "./assets/lemon dessert.jpg";
+import greekSaladImg from "../assets/greek salad.jpg";
+import bruchettaImg from "../assets/bruchetta.svg";
+import lemonDessertImg from "../assets/lemon dessert.jpg";
 import bicycleImg from "/bicycle.svg";
 
 

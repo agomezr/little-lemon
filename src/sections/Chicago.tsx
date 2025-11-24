@@ -1,5 +1,5 @@
-import photo1 from './assets/Mario and Adrian A.jpg';
-import photo2 from './assets/Mario and Adrian b.jpg';
+import photo1 from '../assets/Mario and Adrian A.jpg';
+import photo2 from '../assets/Mario and Adrian b.jpg';
 
 
 export default function About() {

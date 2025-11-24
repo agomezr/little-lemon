@@ -1,7 +1,7 @@
 import { useEffect } from "react"
-import Footer from "./Footer"
-import Header from "./Header"
-import ShowReservations from "./ShowReservations";
+import Footer from "./sections/Footer"
+import Header from "./sections/Header"
+import ShowReservations from "./components/ShowReservations";
 
 function ConfirmedBooking() {
 

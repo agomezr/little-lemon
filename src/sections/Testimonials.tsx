@@ -1,9 +1,8 @@
-import Testimonial from "./Testimonial";
-import avatar from "./assets/avatar1.jpg";
-import avatar2 from "./assets/avatar2.jpg";
-import avatar3 from "./assets/avatar3.jpg";
-import avatar4 from "./assets/avatar4.jpg";
-import type { TestimonialProps } from "./Testimonial";
+import Testimonial, { type TestimonialProps } from "../components/Testimonial";
+import avatar from "../assets/avatar1.jpg";
+import avatar2 from "../assets/avatar2.jpg";
+import avatar3 from "../assets/avatar3.jpg";
+import avatar4 from "../assets/avatar4.jpg";
 
 
 

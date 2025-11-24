@@ -1,11 +1,10 @@
-import Footer from "./Footer"
-import Header from "./Header"
-import BookingForm, { type IFormInput } from "./BookingForm"
+import Footer from "./sections/Footer"
+import Header from "./sections/Header"
+import BookingForm, { type IFormInput } from "./components/BookingForm"
 import { useEffect, useReducer, useState } from "react"
-import { getTodayDateString } from "./helper";
-import { fetchAPI } from "./helper";
+import { fetchAPI, getTodayDateString } from "./helper";
 import { useNavigate } from 'react-router-dom';
-import { addBooking } from "./localStorage";
+import { addBooking } from "./components/localStorage";
 
 /* Requirements available Times */
 export type availableTimes = "17:00" | "17:30" | "18:00" | "18:30" | "19:00" | "19:30" | 

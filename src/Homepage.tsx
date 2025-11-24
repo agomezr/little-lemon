@@ -1,11 +1,11 @@
 import './home.css'
 
-import Hero from './Hero.tsx'
-import Specials from './Specials.tsx'
-import Testimonials from './Testimonials.tsx'
-import Chicago from './Chicago.tsx'
-import Footer from './Footer.tsx'
-import Header from './Header.tsx'
+import Hero from './sections/Hero.tsx'
+import Specials from './sections/Specials.tsx'
+import Testimonials from './sections/Testimonials.tsx'
+import Chicago from './sections/Chicago.tsx'
+import Footer from './sections/Footer.tsx'
+import Header from './sections/Header.tsx'
 
 
 export default function HomePage() {

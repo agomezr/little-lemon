@@ -1,8 +1,11 @@
 import { type ChangeEvent, type Dispatch } from 'react';
-import './form.css'
 import { Controller, useForm } from "react-hook-form";
-import type { availableTimes, dateAction, Occasion } from './BookingPage';
-import { getTodayDateString } from './helper';
+
+import '../form.css'
+
+import { getTodayDateString } from '../helper';
+
+import type { availableTimes, dateAction, Occasion } from '../BookingPage';
 import TimeSelect from './TimeSelect';
 
 

@@ -1,7 +1,7 @@
 import { describe, test, expect, vi, it, afterEach } from 'vitest';
 import { render, screen, fireEvent, within, cleanup, act, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import BookingPage, {initializeTimes } from '../src/BookingPage';
+import BookingPage, { initializeTimes } from '../src/BookingPage.tsx';
 
 // 1. External components to avoid unexpected external collateral failures
 vi.mock('../src/Header', () => ({

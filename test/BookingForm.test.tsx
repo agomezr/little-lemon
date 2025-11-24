@@ -1,8 +1,8 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import BookingForm, { type IFormInput } from '../src/BookingForm';
+import BookingForm, { type IFormInput } from '../src/components/BookingForm.tsx';
 import { BrowserRouter } from 'react-router-dom';
-import { availableTimesOptions } from '../src/BookingPage';
+import { availableTimesOptions } from '../src/BookingPage.tsx';
 import user from '@testing-library/user-event';
 
 

@@ -1,4 +1,4 @@
-import heroImg from './assets/restauranfood.jpg'
+import heroImg from '../assets/restauranfood.jpg'
 
 function Hero() {
   return (
