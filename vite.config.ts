@@ -4,6 +4,8 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  /* For gh-pages */
+  base: '/<nombre-de-tu-repositorio>/',
   plugins: [
     react(),
     tailwindcss(),
