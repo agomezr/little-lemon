@@ -4,8 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  /* For GitHubpages */
-  base: '/little-lemon/',
   plugins: [
     react(),
     tailwindcss(),
