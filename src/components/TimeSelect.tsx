@@ -1,6 +1,6 @@
 
 import { type ChangeEvent, type Ref } from 'react';
-import type { availableTimes } from './BookingPage';
+import type { availableTimes } from '../BookingPage';
 
 type TimeSelectProps = {
   options: availableTimes[] | [];

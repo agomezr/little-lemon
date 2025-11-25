@@ -1,9 +1,9 @@
 import { type RouteObject } from 'react-router-dom'
 
-import BookingPage from './BookingPage.tsx'
+import BookingPage from './BookingPage'
 import HomePage from './HomePage.tsx'
 import ErrorPage from './ErrorPage.tsx'
-import ConfirmedBookingPage from './ConfirmedBookingPage.tsx'
+import ConfirmedBookingPage from './ConfirmedBookingPage'
 
 export const routes: RouteObject[] = [
   {
