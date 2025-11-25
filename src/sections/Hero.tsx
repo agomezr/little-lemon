@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import heroImg from '../assets/restauranfood.jpg'
 
 function Hero() {
@@ -11,7 +12,7 @@ function Hero() {
               <p className='mr-7 mb-5'>
                 We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.
               </p>
-              <button className='button'>Reserve a Table</button>
+              <Link to="/reservations" className='button'>Reserve a Table</Link>
             </div>
             <div className='relative w-[440px] hidden md:block'>
               <p className='md:absolute md:top-12 left-0 w-[250px] aspect-square'>
